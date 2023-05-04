@@ -89,7 +89,8 @@ let success = false;
     success = true;
     res.json({
       success : success,
-      authtoken
+      authtoken,
+      resume : user.resume
     })
 
   } catch (error) {
@@ -100,15 +101,6 @@ let success = false;
 })
 
 
-router.post('/getuser', fetchUser,async (req, res) => {
-try {
-  userid = req.user.id;
-  const user = await User.findById(userid).select("-password")
-  res.send(user)
-}  catch (error) {
-  console.log(error.message)
-  res.status(500).send("Internal server error") 
-}
-})
+  
 
 module.exports = router
