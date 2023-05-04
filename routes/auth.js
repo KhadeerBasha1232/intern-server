@@ -44,7 +44,8 @@ router.post('/createuser', [
     success = true;
     res.json({
       success :success,
-      authtoken
+      authtoken,
+      resume : user.resume
     })
   }
   catch (error) {
@@ -101,6 +102,5 @@ let success = false;
 })
 
 
-  
 
 module.exports = router
