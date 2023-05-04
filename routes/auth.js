@@ -5,14 +5,12 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchUser = require('../middleware/fetchUser');
-const multer = require("multer");
-const upload = multer();
 
 
 
 const JWT_SECRET = 'khadeerisaboy';
 
-router.post('/createuser', upload.single("resume"), [
+router.post('/createuser', [
   body('email', "Enter a valid Email").isEmail(),
   body('name', "Enter a Valid Name").isLength({ min: 3 }),
   body('password', "ENter a Password more than 5 digits").isLength({ min: 5 }),
@@ -34,11 +32,8 @@ router.post('/createuser', upload.single("resume"), [
     user = await User.create({
       name: req.body.name,
       email: req.body.email,
+      resume : req.body.resume,
       password: secPass,
-      resume: {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      },
     })
     const data = {
       user : {

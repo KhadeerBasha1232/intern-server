@@ -15,9 +15,9 @@ const UserSchema = new Schema({
         type:String,
         required:true
     },
-    pdf: {
-        data: Buffer,
-        contentType: String
+    resume:{
+        type:String,
+        required:true
     },
     date:{
         type:Date,
