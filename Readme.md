@@ -52,3 +52,11 @@ If the 'auth-token' is present, the function tries to verify and decode the JWT 
 If there is an error in the token verification process (e.g., the token is invalid or expired), the function sends a 401 status response with an error message indicating that a valid token is required for authentication.
 
 Finally, the `fetchUser` middleware function is exported for use in other parts of the application.
+
+To Run This Server Application --
+
+You Need To Install Node.js In Your System
+
+Run -> npm i
+
+Run -> npm run dev
