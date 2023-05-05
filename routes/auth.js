@@ -4,6 +4,7 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fetchUser = require('../middleware/fetchUser');
 
 
 
@@ -100,6 +101,19 @@ let success = false;
 
 })
 
+
+
+router.post('/getuser', fetchUser,async (req, res) => {
+  try {
+    userid = req.user.id;
+    const user = await User.findById(userid).select("-password")
+    res.send(user)
+  }  catch (error) {
+    console.log(error.message)
+    res.status(500).send("Internal server error") 
+  }
+  })
+  
 
 
 module.exports = router
